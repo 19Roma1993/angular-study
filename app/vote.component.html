@@ -1,0 +1,29 @@
+<div class="container">
+	<form #viewForm="ngForm" (ngSubmit)="create(); viewForm.reset()">
+		<input type="text" placeholder="title" required [(ngModel)]="newTitle" name="title" #newTitleAlt>
+		<input type="text" placeholder="url" required [(ngModel)]="newUrl" name="url" #newUrlAlt>
+		<button type="submit">submit</button>
+		<button (click)="createAlt(newTitleAlt.value,newUrlAlt.value); newTitleAlt.value=''; newUrlAlt.value=''">submit alt</button>
+	</form>
+	<!--<div *ngIf="votes.length">--><!--TODO з *ngIf не працює -->
+	<div class="row" *ngFor="let vote of votes">
+		<div class="two columns">
+			<h6>{{vote.choices}} vote(s)</h6>
+		</div>
+		<div class="three columns">
+			<a href="{{vote.url}}">{{vote.title}}</a>
+		</div>
+		<div class="three columns">
+			<button (click)="voteUp(vote)">
+				<i class="material-icons">arrow_upward</i>
+			</button>
+			<button (click)="voteDown(vote)">
+				<i class="material-icons">arrow_downward</i>
+			</button>
+		</div>
+		<div class="two columns">
+			<button (click)="deleteVote(vote)">delete</button>
+		</div>
+	</div>
+	<!--</div>-->
+</div>

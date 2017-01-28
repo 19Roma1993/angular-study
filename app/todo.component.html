@@ -1,0 +1,21 @@
+<div class="container">
+	<form (ngSubmit)="create(); todoForm.reset()" #todoForm="ngForm">
+		<input type="text" placeholder="What to do?" required [(ngModel)]="newTodoTitle" name="title">
+		<button type="submit" [disabled]="todoForm.form.invalid">Add</button>
+	</form>
+	<section *ngIf="todos.length">
+		<div class="row" *ngFor="let todo of todos">
+			<div class="one column">
+				<button (click)="toggle(todo)" [class.button-primary]="todo.completed">
+					<i class="material-icons">{{todo.completed?'check_box':'check_box_outline_blank'}}</i>
+				</button>
+			</div>
+			<div class="four columns">&emsp;{{todo.title}}</div>
+			<div class="one column">
+				<button (click)="delete(todo)" [class.button-primary]="todo.completed">
+					<i class="material-icons">delete</i>
+				</button>
+			</div>
+		</div>
+	</section>
+</div>
